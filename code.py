@@ -84,7 +84,7 @@ while running:
                     Ypos=int(event.pos[1]/50)+1
                     if mas[Xpos][Ypos]==0:
                         if player==2:
-                            pygame.draw.circle(screen, OColour, ((Xpos-1)*50+25,(Ypos-1)*50+25), 20, lineSize)
+                            pygame.draw.circle(screen, OColour, ((Xpos-1)*unitSize+unitSize/2,(Ypos-1)*unitSize+unitSize/2), Osize/2, lineSize)
                             mas[Xpos][Ypos]=1
                             player=1
                             pygame.display.update()
@@ -104,8 +104,8 @@ while running:
                                 print(mas[i])
                             print('---------------------')
                         else:
-                            pygame.draw.line(screen, XColour, [(Xpos-1)*50+5,(Ypos-1)*50+5], [(Xpos-1)*50+45,(Ypos-1)*50+45])
-                            pygame.draw.line(screen, XColour, [(Xpos-1)*50+45,(Ypos-1)*50+5], [(Xpos-1)*50+5,(Ypos-1)*50+45])
+                            pygame.draw.line(screen, XColour, [(Xpos-1)*unitSize+(unitSize-Xsize)/2,(Ypos-1)*unitSize+(unitSize-Xsize)/2], [(Xpos)*unitSize-(unitSize-Xsize)/2,(Ypos)*unitSize-(unitSize-Xsize)/2])
+                            pygame.draw.line(screen, XColour, [(Xpos)*unitSize-(unitSize-Xsize)/2,(Ypos-1)*unitSize+(unitSize-Xsize)/2], [(Xpos-1)*unitSize+(unitSize-Xsize)/2,(Ypos)*unitSize-(unitSize-Xsize)/2])
                             mas[Xpos][Ypos]=2
                             player=2
                             pygame.display.update()
@@ -124,5 +124,4 @@ while running:
                             for i in range(n+2):
                                 print(mas[i])
                             print('---------------------')
-
 
