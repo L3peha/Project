@@ -3,13 +3,15 @@ import pygame
 pygame.init()
 
 #size of findow, figures, outlines
-Xsize=40
-Osize=40
-unitSize=50#with outlines
-actualUnitSize=48
+unitSize=55#with outlines
+Xsize=4*unitSize/5
+Osize=4*unitSize/5
 lineSize=1
+actualUnitSize=unitSize-2*lineSize
 n=15
-player=2
+player=2 #starts with O
+#player=1 #starts with X
+textSize=unitSize+4
 x=int(n*unitSize+lineSize)
 y=int(n*unitSize+lineSize)
 screen = pygame.display.set_mode((x,y))
@@ -80,8 +82,8 @@ while running:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
                 if pygame.mouse.get_focused():
-                    Xpos=int(event.pos[0]/50)+1
-                    Ypos=int(event.pos[1]/50)+1
+                    Xpos=int(event.pos[0]/unitSize)+1
+                    Ypos=int(event.pos[1]/unitSize)+1
                     if mas[Xpos][Ypos]==0:
                         if player==2:
                             pygame.draw.circle(screen, OColour, ((Xpos-1)*unitSize+unitSize/2,(Ypos-1)*unitSize+unitSize/2), Osize/2, lineSize)
@@ -93,7 +95,7 @@ while running:
                                 for j in range (11) :
                                     if mas[i][j] != 0 :          #check returns xP yP and 0 1 - |;  1 1 - \; 1 -1 - /; 1 0 - -- 
                                         if check(1,i,j,0,0,1) :
-                                            f2 = pygame.font.SysFont('serif', 54)
+                                            f2 = pygame.font.SysFont('serif', textSize)
                                             text2 = f2.render("0 wins!", 0, (0, 180, 0))
                                             screen.blit(text2, (2*x/5, 2*y/5))
                                             pygame.display.update()
@@ -114,7 +116,7 @@ while running:
                                 for j in range (11) :
                                     if mas[i][j] != 0 :
                                         if check(2,i,j,0,0,1) :
-                                            f2 = pygame.font.SysFont('serif', 54)
+                                            f2 = pygame.font.SysFont('serif', textSize)
                                             text2 = f2.render("X wins!", 0, (0, 180, 0))
                                             screen.blit(text2, (2*x/5, 2*y/5))
                                             pygame.display.update()
@@ -124,4 +126,3 @@ while running:
                             for i in range(n+2):
                                 print(mas[i])
                             print('---------------------')
-
